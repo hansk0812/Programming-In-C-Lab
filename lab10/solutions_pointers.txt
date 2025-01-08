@@ -1,0 +1,156 @@
+1. 
+
+#include<stdio.h>
+
+void main() {
+
+  char sentence[100]; // = "She studies at SNU";
+
+  printf ("Enter string:");
+  
+  // scanf does not accept strings with spaces
+  // So, you can use %NUM to indicate that the sentence variable has NUM characters in the buffer until newline ([^\n])
+  // [^\n] means don't read newline (^ means not) 
+  // In the exam, you can simply hardcode the string i.e. declare it inside the main function
+  scanf ("%99[^\n]", sentence); 
+
+  int prev_space_index = 0;
+  for (int idx = 0; *(sentence+idx) != '\0'; idx++) {
+    if (sentence[idx] == ' ') {
+      printf ("\n");
+      for (int jdx = prev_space_index; jdx < idx; jdx++)
+        printf ("%c", *(sentence+jdx));
+      prev_space_index = idx+1;
+    }
+  }
+
+  //Print last word
+  printf ("\n");
+  for (int jdx = prev_space_index; sentence[jdx] != '\0'; jdx++)
+    printf ("%c", sentence[jdx]);
+  printf ("\n");
+
+}
+
+2. 
+
+#include<stdio.h>
+
+void main() {
+  
+  char *two_d_array[13] = {"Invalid Month", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+  
+  int num;
+  printf ("Enter month index:");
+  scanf ("%d", &num);
+  
+  if (num < 1 || num > 12)
+    printf ("%s", two_d_array[0]);
+  else
+    printf ("%s", two_d_array[num]);
+
+}
+
+3. 
+
+WITHOUT MALLOC:
+
+#include<stdio.h>
+
+void main() {
+  
+  int *two_d_array[5];
+
+  int num_arrays = 4;
+  int list_of_sizes[5] = {5,3,4,6};
+
+  int a[5] = {1,2,3,4,5};
+  int b[3] = {6,7,8};
+  int c[4] = {1,6,70,2};
+  int d[6] = {1,2,3,4,5,6};
+
+  two_d_array[0] = &a[0]; // same as a
+  two_d_array[1] = &b[0];
+  two_d_array[2] = &c[0];
+  two_d_array[3] = &d[0];
+  
+  for (int idx = 0; idx < num_arrays; idx++)
+  {
+    for (int jdx = 0; jdx < list_of_sizes[idx]; jdx++)
+      printf("%d ", two_d_array[idx][jdx]);
+    printf ("\n");
+  }
+}
+
+WITH MALLOC:
+
+#include<stdio.h>
+#include<stdlib.h> // for malloc
+
+void main() {
+  
+  int **two_d_array; // First dimension for number of lists' memory and second pointer for each list's memory
+  int *array_of_sizes; // Store the sizes for printing
+
+  int num_arrays;
+  printf ("Enter number of arrays:");
+  scanf ("%d", &num_arrays);
+
+  two_d_array = malloc(num_arrays * 1); // Size of pointer is 1
+  array_of_sizes = malloc(num_arrays * 2); // Size of int is 2
+
+  for (int idx = 0; idx < num_arrays; idx++) {
+    int n;
+    printf ("\nEnter number of elements for array number %d\n", idx+1);
+    scanf ("%d", &n);
+
+    array_of_sizes[idx] = n;
+
+    int *array = malloc(n * 2); // size of integer is 2
+    for (int jdx = 0; jdx < n; jdx++) {
+      printf ("Enter the %d number:", jdx+1);
+      scanf ("%d", (array+jdx));
+    }
+
+    two_d_array[idx] = array;
+  }
+  
+  // Print array
+  printf ("\n\nEntire 2D array:\n\n");
+  for (int idx = 0; idx < num_arrays; idx++)
+  {
+    for (int jdx = 0; jdx < array_of_sizes[idx]; jdx++)
+      printf("%d ", two_d_array[idx][jdx]);
+    printf ("\n");
+  }
+}
+
+4. 
+
+#include<stdio.h>
+
+// void **output represents arr: first dimension = 3 pointers, second dimension = n numbers
+void assign(void **output, int *arr, int index) {
+  output[index] = arr; // pointer index based assignment happens here
+}
+
+void main() {
+  
+  int a[] = {1,2,3};
+  int b[] = {1,2};
+  int c[] = {1};
+  
+  int array_lengths[] = {3,2,1};
+
+  int *arr[3];
+
+  assign(arr, a, 0); 
+  assign(arr, b, 1); 
+  assign(arr, c, 2); 
+
+  for (int idx = 0; idx < 3; idx++) {
+    for (int jdx = 0; jdx < array_lengths[idx]; jdx++)
+      printf (" %d ", arr[idx][jdx]); // testing pointer index assignment
+    printf ("\n");
+  }
+}
