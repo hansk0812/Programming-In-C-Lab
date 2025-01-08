@@ -1,0 +1,235 @@
+1. 
+└──╼ $ls -al
+total 4
+drwxr-xr-x 1 hans hans   26 Aug 24 20:58 .
+drwxr-xr-x 1 hans hans   24 Sep  2 08:05 ..
+-rw-r--r-- 1 hans hans 1013 Aug 24 20:58 questions.txt
+└──╼ $chmod 457 questions.txt 
+└──╼ $ls -al
+total 4
+drwxr-xr-x 1 hans hans   26 Aug 24 20:58 .
+drwxr-xr-x 1 hans hans   24 Sep  2 08:05 ..
+-r--r-xrwx 1 hans hans 1013 Aug 24 20:58 questions.txt
+└──╼ $chmod 777 questions.txt 
+└──╼ $ls -al
+total 4
+drwxr-xr-x 1 hans hans   26 Aug 24 20:58 .
+drwxr-xr-x 1 hans hans   24 Sep  2 08:05 ..
+-rwxrwxrwx 1 hans hans 1013 Aug 24 20:58 questions.txt
+
+2.
+└──╼ $touch filename
+└──╼ $ls -al filename 
+-rw-r--r-- 1 hans hans 0 Sep  5 10:19 filename
+└──╼ $chmod 777 filename 
+└──╼ $ls -al filename 
+-rwxrwxrwx 1 hans hans 0 Sep  5 10:19 filename
+└──╼ $chmod 644 filename 
+└──╼ $ls -al filename 
+-rw-r--r-- 1 hans hans 0 Sep  5 10:19 filename
+
+3.
+#include <stdio.h>
+
+int main() {
+  printf ("Hello World!");
+  return 0;
+}
+
+#include <stdio.h>
+
+void main() {
+  printf("Hello World!");
+}
+
+4.
+#include<stdio.h>
+
+void main(){
+  int 12as;
+}
+
+error.c: In function ‘main’:
+error.c:4:7: error: invalid suffix "as" on integer constant
+    4 |   int 12as;
+      |       ^~~~
+error.c:4:7: error: expected identifier or ‘(’ before numeric constant
+
+#include<stdio.h>
+
+void main(){
+  int A
+}
+
+error.c: In function ‘main’:
+error.c:5:1: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘}’ token
+    5 | }
+      | ^
+
+#include<stdio.h>
+int A; 
+
+/usr/bin/ld: /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o: in function `_start':
+(.text+0x17): undefined reference to `main'
+collect2: error: ld returned 1 exit status
+
+#include<stdio.h>
+
+void main() {
+  int a;
+  int b;
+  asf
+}
+
+error.c: In function ‘main’:
+error.c:6:3: error: ‘asf’ undeclared (first use in this function)
+    6 |   asf
+      |   ^~~
+error.c:6:3: note: each undeclared identifier is reported only once for each function it appears in
+error.c:6:6: error: expected ‘;’ before ‘}’ token
+    6 |   asf
+      |      ^
+      |      ;
+    7 | }
+      | ~
+
+5.
+#include<stdio.h>
+
+void main(){
+  int far = 300;
+  float c;
+
+  while (far > 0){
+    c = (5./9) * (far-32);
+    printf ("\n%d F = %f C", far, c);
+    far -= 1;
+  }
+}
+
+6.
+
+#include<stdio.h>
+
+void main(){
+  int far = 300;
+  float c;
+
+  for (int far = 300; far > 0; far--){
+    c = (5./9) * (far-32);
+    printf ("\n%d F = %f C", far, c);
+  }
+}
+
+7.
+
+gcc type_convert.c 
+type_convert.c: In function ‘main’:
+type_convert.c:27:20: warning: unsigned conversion from ‘long int’ to ‘unsigned int’ changes value from ‘10000005537’ to ‘1410070945’ [-Woverflow]
+   27 |   unsigned int w = 10000005537;
+      |                    ^~~~~~~~~~~
+
+Differences between unsigned int and signed int from stackoverflow:
+
+With an unsigned int, the value is never negative; there is no sign associated with the value. Here are the 16 possible values of a four-bit unsigned int:
+
+bits  value
+0000    0
+0001    1
+0010    2
+0011    3
+0100    4
+0101    5
+0110    6
+0111    7
+1000    8
+1001    9
+1010   10
+1011   11
+1100   12
+1101   13
+1110   14
+1111   15
+
+... and Here are the 16 possible values of a four-bit signed int:
+
+bits  value
+0000    0
+0001    1
+0010    2
+0011    3
+0100    4
+0101    5
+0110    6
+0111    7
+1000   -8
+1001   -7
+1010   -6
+1011   -5
+1100   -4
+1101   -3
+1110   -2
+1111   -1
+
+//char --> int, int --> char, int --> float, float --> int and short, signed, unsigned variants of the numerical types.
+
+#include <stdio.h>
+
+void main() {
+  char x = 'a';
+  printf ("\n%d", x);
+  int y = (int) x;
+  printf ("\n%d", y);
+
+  int a = 65; // capital A in ASCII
+  char b = a;
+  printf ("\n%c", b);
+  b = (char)a;
+  printf ("\n%c", b);
+
+  int f = 100;
+  printf ("\nWrong answer: %f", f);
+  printf ("\nRight answer: %f", (float)f);
+
+  float g = 9.8;
+  printf ("\nWrong answer: %d", g);
+  printf("\nRight answer: %d", (int)g);
+
+  // the max value for these types can vary based on the underlying hardware
+  short int v=10;
+  unsigned int w = 1000005537;
+  signed int z = 1000005537;
+
+  printf ("\n%d, %d, %d\n", v, w, z);
+}
+
+8. Swap with 3rd variable:
+
+#include<stdio.h>
+
+void main() {
+  int a = 5, b = 10;
+  printf("\nBefore swap: \na=%d, b=%d", a, b);
+
+  int c = a;
+  a = b;
+  b = c;
+  printf("\nAfter swap: \na=%d, b=%d", a, b);
+
+}
+
+Swap without 3rd variable:
+
+#include<stdio.h>
+
+void main() {
+  int a = 5, b = 10;
+  printf("\nBefore swap: \na=%d, b=%d", a, b);
+
+  a = a + b;
+  b = a - b;
+  a = a - b;
+  printf("\nAfter swap: \na=%d, b=%d", a, b);
+
+}
+

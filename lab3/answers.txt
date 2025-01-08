@@ -1,0 +1,287 @@
+1. 
+
+#include<stdio.h>
+#include<string.h>
+#include<ctype.h>
+
+void main() {
+  char name[50];
+
+  printf("Enter first name:");
+  scanf("%s", name);
+  
+  int sum = 0;
+  for (int idx = 0; idx < strlen(name); idx++) {
+    sum += tolower(name[idx]);
+  }
+  printf("\nSum of characters in lowercase: %d", sum);
+}
+
+
+#include <stdio.h>
+
+int main() {
+char letter1 = 'B'; // ASCII value of 'B' is 66
+char letter2 = 'C'; // ASCII value of 'C' is 67
+
+// Performing arithmetic operation
+int result = letter1 + letter2;
+
+// Printing the result
+printf("The result of adding '%c' and '%c' is: %d\n", letter1, letter2, result);
+
+// 40 is just a heuristic to bring result back to the space of alphabets
+printf("This corresponds to the character: %c\n", (char)(result-40));
+
+return 0;
+
+}
+
+2.
+
+#include<stdio.h>
+
+void main() {
+
+  int a = 5; // 0101 in binary
+  int b = 3; // 0011 in binary
+  
+  int c = a & b; // 0001 in binary, so c = 1
+  printf ("\na & b = %d", c);
+  c = a | b; // 0111 in binary, so c = 7
+  printf ("\na | b = %d", c);
+  c = a ^ b; // 0110 in binary, so c = 6
+  printf ("\na ^ b = %d", c);
+  c = ~a; // 1010 in binary (for a 4-bit system), so c = -6 in 2's complement form
+  printf ("\n~a = %d", c);
+  c = a << 1; // 1010 in binary, so c = 10
+  printf ("\na << 1 = %d", c); // Left shift is equivalent to number*2^n
+  c = a >> 1; // 0010 in binary, so c = 2
+  printf ("\na >> 1 = %d", c); // Right shift is equivalent to number/2^n
+
+}
+
+3. Imitates pow function from math.h
+Calculates the n'th power of a variable where the for loop runs n times.
+
+4.
+
+#include<stdio.h>
+#include<math.h>
+
+void main() {
+  int x = 2; 
+  int m = 3;
+  
+  int power = 1;
+  for (int idx = 1; idx <= m; idx++) {
+    power *= 2;
+  }
+
+  int result = pow(x, power);
+  printf ("\nmath function x=%d", result);
+
+  for (int idx = 1; idx <= m; idx++) {
+    x = x * x;
+  }
+  printf ("\nx=%d", x);
+}
+
+The program doesn't run when there is numerical overflow. Try to use long and long long types to get the maximum range.
+
+5. 
+
+#include<stdio.h>
+
+void main() {
+  int x[50];
+
+  printf("Enter 50 numbers one at a time and press enter key:\n");
+  for (int idx = 0; idx < 50; idx++) {
+    scanf("%d", &x[idx]);
+  }
+  
+  for (int idx = 0; idx < 5; idx++) {
+    printf("\n.............................................................................\n");
+    for (int jdx = 0; jdx < 2; jdx++) {
+      printf("\n");
+      for (int kdx = 0; kdx < 5; kdx++) {
+        printf ("  %d  ", x[idx*10 + jdx*5 + kdx]);
+      }
+    }
+  }
+
+}
+
+6.
+
+#include <stdio.h>
+int main() {
+int a = 5, b = 10, c = 2, d = 8;
+int result = a + b * c - d / c % b + (a > b ? a : c);
+int result2 = a + (b * c) - (d / c) % b + (a > b ? a: c);
+printf("Result: %d\n", result);
+printf("Result 2: %d\n", result2);
+return 0;
+}
+
+7. 
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+  int number = 25;
+  if (number > 0) {
+    printf("The number is positive.\n");
+    bool even = 0;
+    if (number % 2 == 0) {
+      even = 1;
+      printf("The number is even.\n");
+    }
+    if (~even) 
+      printf("The number is odd. \n");
+  } 
+  else {
+    printf("The number is not positive.\n");
+  }
+}
+
+
+#include <stdio.h>
+
+int main() {
+  int number = 0;
+  if (number > 0) {
+    printf("The number is positive.\n");
+  } 
+  else if (number < 0) {
+    printf("The number is negative.\n");
+    }
+
+if (number == 0) {
+    printf("The number is zero. \n");
+  }
+}
+
+8. Using switch case:
+
+#include<stdio.h>
+#include<string.h>
+
+void main() {
+  
+  char firstday[10];  
+  int date;
+
+  printf("Enter the first day of the month:");
+  scanf("%s", firstday);
+  
+  printf("Enter date:");
+  scanf("%d", &date);
+  
+  int firstday_idx = -1;
+  
+  if (strcmp(firstday, "Monday") == 0) {
+    firstday_idx = 1;
+  }
+  else if (strcmp(firstday, "Tuesday") == 0) {
+    firstday_idx = 2;
+  }
+  else if (strcmp(firstday, "Wednesday") == 0) {
+    firstday_idx = 3;
+  }
+  else if (strcmp(firstday, "Thursday") == 0) {
+    firstday_idx = 4;
+  }
+  else if (strcmp(firstday, "Friday") == 0) {
+    firstday_idx = 5;
+  }
+  else if (strcmp(firstday, "Saturday") == 0) {
+    firstday_idx = 6;
+  }
+  else if (strcmp(firstday, "Sunday") == 0) {
+    firstday_idx = 7;
+  }
+
+  if (firstday_idx == -1) {
+    printf("Invalid day! Exiting!");
+    return;
+  }
+  
+  int res = firstday_idx + date % 7 - 1;
+  switch (res) {
+    case 1:{
+      printf("%d of the month is a Monday", date);
+      break;
+           }
+    case 2:{
+      printf("%d of the month is a Tuesday", date);
+      break;
+           }
+    case 3:{
+      printf("%d of the month is a Wednesday", date);
+      break;
+           }
+    case 4:{
+      printf("%d of the month is a Thursday", date);
+      break;
+           }
+    case 5:{
+      printf("%d of the month is a Friday", date);
+      break;
+           }
+    case 6:{
+      printf("%d of the month is a Saturday", date);
+      break;
+           }
+    case 7:{
+      printf("%d of the month is a Sunday", date);
+      break;
+           }
+  }
+}
+
+Without switch case:
+
+#include<stdio.h>
+#include<string.h>
+
+
+void main() {
+  
+  char firstday[10];  
+  char x[7][10]; 
+  int order[7];
+
+  strcpy(x[0], "Monday");
+  strcpy(x[1], "Tuesday");
+  strcpy(x[2], "Wednesday");
+  strcpy(x[3], "Thursday"); 
+  strcpy(x[4], "Friday");
+  strcpy(x[5], "Saturday");
+  strcpy(x[6], "Sunday");
+
+  int date;
+
+  printf("Enter the first day of the month:");
+  scanf("%s", firstday);
+  
+  int order_idx = -1;
+  for (int idx=0; idx < sizeof(x) / 10; idx++) {
+    if (strcmp(x[idx], firstday) == 0)
+      order_idx = idx;
+  }
+
+  if (order_idx == -1) {
+    printf("Invalid input! Exiting!");
+    return;
+  }
+
+  printf("Enter date:");
+  scanf("%d", &date);
+  
+   printf("The date %d is a %s", date, x[(order_idx+date-1) % 7]);
+
+}
+

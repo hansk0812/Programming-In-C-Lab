@@ -1,0 +1,179 @@
+1.
+
+#include <stdio.h>
+
+int main() {
+    int a=5, b=10;
+    int *p1=&a, *p2=&b;
+   
+    printf("Sum = %d", ((*p1)+(*p2)));
+
+    return 0;
+}
+
+2. OUT OF SCOPE: RECURSIVE FUNCTIONS AND BACKTRACKING
+
+// thanks to geeksforgeeks for the code
+
+#include<stdio.h>
+#include<string.h>
+
+char* replace(char* arr, int idx1, int idx2)
+{
+  char temp = arr[idx1];
+  arr[idx1] = arr[idx2];
+  arr[idx2] = temp;
+
+  return arr;
+}
+
+// string s, first idx characters are constant
+void permute_recursive(char* s, int idx)
+{
+    // Base case
+    if (idx == strlen(s) - 1) {
+      printf("%s\n", s);
+      return;
+    }
+
+    // recursive case
+    for (int i = idx; i < strlen(s); i++) {
+      
+        // Swapping 
+        s = replace(s, idx, i);
+
+        // First idx+1 characters fixed
+        permute_recursive(s, idx + 1);
+
+        // Backtrack
+        s = replace(s, idx, i);
+    }
+}
+
+// Wrapper function
+void permute(char* s) {
+    permute_recursive(s, 0);
+}
+
+void main()
+{
+    char s[50];
+
+    printf("Enter string such that every character is unique: ");
+    scanf("%s", s);
+    permute(s);
+}
+
+3a.
+
+#include <stdio.h>
+
+int main() {
+    int a[] = {1,3,5,7};
+   
+    int *p = a; // or &a[0]
+   
+    for (int idx=0; idx < 4; idx++)
+    {
+        printf ("%d\n", *(p+idx));
+    }
+    return 0;
+}
+
+3b.
+
+#include <stdio.h>
+
+int main() {
+   
+    int a[] = {1,3,5,7};
+   
+    int *p = a; // or &a[0]
+    int q[] = {0,0,0,0};
+   
+    for (int idx=0; idx < 4; idx++)
+    {
+        for (int jdx=0; jdx <= idx; jdx++)
+            q[idx] +=*(p+jdx);
+       
+        printf("%d\n", q[idx]);
+    }
+    return 0;
+}
+
+3b more efficient
+
+#include <stdio.h>
+
+int main() {
+   
+    int a[] = {1,3,5,7};
+   
+    int *p = a; // or &a[0]
+    int q[] = {0,0,0,0};
+   
+    for (int idx=0; idx < 4; idx++)
+    {
+        if (idx==0)
+            q[idx] = (*p);
+        else
+        {
+            q[idx] += (*(q+idx-1)) + (*(a+idx));
+        }
+       
+        printf("%d\n", q[idx]);
+    }
+    return 0;
+}
+
+4.
+
+#include<stdio.h>
+#include<string.h>
+
+int get_pos(char *a, char *b)
+{
+  int y_idx = 0;
+  int y_idx_backup = 0;
+
+  for (int idx=0; (*(a + idx)) != '\0'; idx++)
+  {
+    if ((*(a+idx)) == (*(b + y_idx)))
+    {
+      y_idx += 1;
+      for (int jdx=idx+1; (*(a+jdx)) != '\0'; jdx++)
+      {
+        if ((*(a+jdx)) != (*(b + y_idx)))
+          break;
+        else
+          y_idx += 1;
+
+        if ((*(b + y_idx+1)) == '\0')
+          return idx;
+      }
+    }
+  }
+  return -1;
+}
+
+void main()
+{
+  char a[50] = "Hello World!";
+  char b[50] = "Hello";
+  char c[50] = "ByeBye";
+
+  int pos = get_pos(a, b); 
+  
+  if (pos == -1)
+    printf("No substring match for replace operation!");
+  else
+  {
+    int idx;
+
+    for (idx = 0; idx < strlen(c); idx++)
+    {
+      (*(a+pos+idx)) = (*(c+idx));
+    }
+   }
+  printf ("%s", a);
+}

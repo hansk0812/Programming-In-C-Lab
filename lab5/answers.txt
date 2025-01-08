@@ -1,0 +1,218 @@
+1a) 
+
+#include<stdio.h>
+#include<stdlib.h>
+
+float calculator(int m, int n, char o) {
+  float r;
+  switch(o) {
+    case '+':
+      r = m + n;
+      break;
+    case '-':
+      r = m - n;
+      break;
+    case '*':
+      r = m * n;
+      break;
+    case '/':
+      r = (float) m/n;
+      break;
+  }
+  return r;
+}
+
+void main() {
+  
+  int m, n;
+  float r;
+  char o;
+  
+  printf("Enter 2 numbers and the calculator operation separated by comma followed by space:");
+  scanf("%d, %d, %c", &m, &n, &o);
+
+  printf("%c", o);
+  r = calculator(m, n, o);
+  printf ("Result: %f", r);
+}
+
+1b)
+
+#include<stdio.h>
+#include<stdlib.h>
+
+void calculator() {
+  
+  int m, n;
+  float r;
+  char o;
+  printf("Enter 2 numbers and the calculator operation separated by comma followed by space:");
+  scanf("%d, %d, %c", &m, &n, &o);
+
+  switch(o) {
+    case '+':
+      r = m + n;
+      break;
+    case '-':
+      r = m - n;
+      break;
+    case '*':
+      r = m * n;
+      break;
+    case '/':
+      r = (float) m/n;
+      break;
+  }
+  printf ("Result: %f", r);
+}
+
+void main() {
+  
+  calculator();
+}
+
+2)
+
+#include<stdio.h>
+
+void num_to_words(int num) {
+  int n[5], idx=0;
+  
+  while (num>0) {
+    n[idx] = num % 10;
+    idx += 1;
+    num = num / 10;
+  }
+  
+  int size = idx;
+
+  for (int idx = size-1; idx >= 0; idx--) {
+    switch (n[idx]) {
+      case 0:
+        printf (" zero ");
+        break;
+      case 1:
+        printf (" one ");
+        break;
+      case 2:
+        printf (" two ");
+        break;
+      case 3:
+        printf (" three ");
+        break;
+      case 4:
+        printf (" four ");
+        break;
+      case 5:
+        printf (" five ");
+        break;
+      case 6:
+        printf (" six ");
+        break;
+      case 7:
+        printf (" seven ");
+        break;
+      case 8:
+        printf (" eight ");
+        break;
+      case 9:
+        printf (" nine ");
+        break;
+    }
+  }
+}
+
+void main() {
+  
+  int num;
+
+  printf ("Enter a number (max=5 digits):");
+  scanf ("%d", &num);
+  num_to_words(num);
+}
+
+3)
+
+Inside Function:
+x = 20 y = 10
+In the Caller:
+a = 10 b = 20
+
+4)
+
+#include<stdio.h>
+
+float area_triangle(float base, float ht) {
+  return 0.5*base*ht;
+}
+
+void main() {
+  
+  float b, h;
+
+  printf ("Enter the base and height of triangle separated by comma and space:");
+  scanf ("%f, %f", &b, &h);
+
+  printf ("\nArea of the triangle = %f\n", area_triangle(b, h));
+
+  float l;
+  printf ("Enter the length and breadth of a rectangle separated by comma and space:");
+  scanf ("%f, %f", &l, &b);
+
+  printf ("\nArea of the rectangle/square = %f\n", 2*area_triangle(l, b));
+}
+
+5)
+
+#include <stdio.h> 
+  
+void to_binary(int n) 
+{ 
+  int binary[1000]; 
+
+  int idx = 0; 
+  while (n > 0) { 
+    binary[idx] = n % 2; 
+    n = n / 2; 
+    idx++; 
+  } 
+
+  for (int j = idx - 1; j >= 0; j--) 
+      printf("%d", binary[j]); 
+} 
+  
+void main() 
+{
+  int n;
+  printf ("Enter integer to convert to binary: ");
+  scanf("%d", &n);
+  
+  to_binary(n); 
+}
+
+6)
+
+#include<stdio.h>
+
+int is_prime(int num) {
+  int isp = 1;
+  for (int idx=2; idx <= num/2; idx++) {
+    if (num % idx == 0)
+      isp = 0;
+  }
+  return isp;
+}
+
+void main() {
+  
+  int m, M;
+  printf ("Enter a numerical range separated by comma followed by space: ");
+  
+  scanf ("%d, %d", &m, &M);
+
+  for (int idx = m; idx <= M; idx++) {
+    if (is_prime(idx))
+      printf (" %d, ", idx);
+  }
+}
+

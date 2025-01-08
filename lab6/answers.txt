@@ -1,0 +1,214 @@
+└──╼ $cat anagram.c 
+#include<stdio.h>
+#include<stdbool.h>
+#include<string.h>
+
+bool anagram(char a[50], char b[50]) {
+  if (strlen(a) != strlen(b))
+    return false;
+
+  int alphabets[26] = {0};
+
+  for (int idx = 0; idx < strlen(a); idx++) {
+    alphabets[a[idx] - 97] += 1;
+    alphabets[b[idx] - 97] -= 1;
+  }
+
+  for (int idx = 0; idx < 26; idx++)
+    if (alphabets[idx] != 0)
+      return false;
+
+  return true;
+
+}
+
+void main() {
+  char a[50], b[50];
+
+  printf("Enter string 1 in lowercase:");
+  scanf("%s", &a);
+  printf("Enter string 2 in lowercase:");
+  scanf("%s", &b);
+
+  if (anagram(a, b))
+    printf ("%s and %s are anagrams!", a, b);
+  else
+    printf ("%s and %s are not anagrams!", a, b);
+
+}
+
+└──╼ $cat anagram_dynamic.c 
+
+#include <stdio.h>
+#include <string.h>
+
+int linear_search(char a[], int size, char c) {
+   
+    for (int idx = 0; idx < size; idx++)
+    if (a[idx] == c)
+        return idx;
+   
+    return -1;
+}
+
+int anagram(char x[], char y[]) {
+
+    char letters[50];
+    int counts[50] = {0};
+    int INDEX = 0;
+   
+    for (int idx = 0; idx < strlen(x); idx++) {
+        int index = linear_search(letters, strlen(letters), x[idx]);
+        if (index == -1) {
+            letters[INDEX] = x[idx];
+            counts[INDEX] += 1;
+            INDEX++;
+        }
+        else {
+            counts[index] += 1;
+        }
+    }
+   
+    for (int idx = 0; idx < strlen(y); idx++) {
+        int index = linear_search(letters, strlen(letters), x[idx]);
+        if (index == -1) {
+            return 0;
+        }
+        else {
+            counts[index] -= 1;
+        }
+    }
+ 
+    for (int idx = 0; idx < INDEX; idx++)
+        if (counts[idx] != 0)
+            return 0;
+    return 1;
+   
+}
+
+int main() {
+    // Write C code here
+    char x[50], y[50];
+   
+    strcpy(x, "pears");
+    strcpy(y, "spare");
+   
+    int result = anagram(x,y);
+   
+    if (result)
+        printf("%s and %s are anagrams!", x, y);
+    else
+        printf("%s and %s are not anagrams!", x, y);
+   
+    return 0;
+}
+
+└──╼ $cat search.c 
+#include<stdio.h>
+
+int linear_search(int arr[10], int element) {
+  for (int idx=0; idx < 10; idx++) {
+    if (arr[idx] == element) {
+      return idx;
+    }
+  }
+
+  return -1;
+}
+
+void main(){
+
+  int array[10], element;
+
+  printf ("Enter the 10 elements of the array separated by , and end with ,:");
+  for (int idx = 0; idx < 10; idx++) {
+    scanf("%d,", &array[idx]); //&array[idx]);
+  }
+  printf("Enter the number to search for:");
+  scanf("%d", &element);
+  
+  int index = linear_search(array, element);
+  
+  if (index == -1)
+    printf ("%d not found in the array!", element);
+  else
+    printf ("%d is in position %d in the array!", element, index);
+
+}
+
+└──╼ $cat rotate.c 
+#include<stdio.h>
+
+void rotate_left(int arr[5]) {
+
+  int swap1 = arr[0];
+  for (int idx=1; idx<5; idx++)
+    arr[idx-1] = arr[idx];
+  arr[4] = swap1;
+  
+  printf ("\nRotated array: ");
+  for (int idx=0; idx<5; idx++)
+    printf("%d,", arr[idx]);
+  printf ("\n");
+}
+
+void main() {
+  int arr[5];
+
+  printf ("Enter 5 numbers of the array separated by , and ending with ,:");
+  for (int idx = 0; idx < 5; idx++) {
+    scanf("%d,", &arr[idx]);
+  }
+  
+  for (int idx=0; idx<5; idx++)
+    rotate_left(arr);
+}
+
+└──╼ $cat complex_mul.c 
+#include<stdio.h>
+
+void multiply(int a_real, int a_complex, int b_real, int b_complex) {
+  int res_real = a_real*b_real - a_complex*b_complex;
+  int res_complex = a_complex*b_real + a_real*b_complex;
+
+  printf (" (%d + %di) * (%d + %di) = (%d + %di) ", a_real, a_complex,
+                                                    b_real, b_complex,
+                                                    res_real, res_complex);
+}
+
+void main() {
+  int a_real, a_complex, b_real, b_complex;
+
+  printf ("Enter a and b from (a+bi) separated by comma: ");
+  scanf("%d,%d", &a_real, &a_complex);
+
+  printf ("Enter c and d from (c+di) separated by comma: ");
+  scanf("%d,%d", &b_real, &b_complex);
+
+  multiply(a_real, a_complex, b_real, b_complex);
+
+}
+
+└──╼ $cat default_params.c 
+#include<stdio.h>
+
+int f1(int a, int b, int c) { 
+  return f2(a, b, 10); 
+}
+
+int f2(int a, int b, int c) {
+  printf ("Arguments a and b are specified during runtime!\n");
+  printf ("Argument(s) c is specified during compile time as a default value if f1 calls f2!\n");
+  printf ("Argument(s) c is specified during runtime if f2 is called!\n");
+  printf ("c = %d\n", c);
+}
+
+void main() {
+  int a = 5, b = 10;
+
+  f1(a, b, 0);
+  f2(a, b, 1);
+
+  printf ("The disadvantage of this approach is the addition of another function call to the call stack!");
+}
+

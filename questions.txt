@@ -1,0 +1,238 @@
+1. Write a C program to accept a string with spaces in them using scanf.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Get familiar with the following:
+	a) File access permissions in Unix / Linux: `chmod` command, changing access permissions and seeing the permissions by `ls -al` command.
+	b) Create a file using the `touch` command, see the access of the file. Change the file access to all read, write and execute for all - users, groups and others. Then change back to the original default one.
+2. To get familiar with error --> reason, try to create mistakes and read through the stderr output.
+3. Write a C program for Farenheit --> Celcius conversion (C = 5/9 (F-32)) using while loop between all farenheit values between 300 F and 0 F.
+4. Rewrite Farenheit --> Celcius using for loop and find changes between them.
+5. Write a C program and test the type conversions using printf: char --> int, int --> char, int --> float, float --> int and short, signed, unsigned variants of the numerical types.
+6. Swap the values of 2 variables (a) with and (b) without a third variable.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Write a C program to calculate the sum of ASCII values of your first name - input should be the characters present in your names (first letter in upper and other letters in lower). Your program needs to sum up the values and print the sum. 
+2. Write a C program to calculate the bitwise operations of the given operands. Check if all bitwise operators work properly.
+3. Write a C program to assign 50 integer numbers in an array and print it in table-wise manner with two rows and each row having five columns.
+4. Find the largest element in an array using dynamic memory allocation i.e. write code along with accepting inputs and find the maximum element at each input step.
+5. Write a C program to understand the order of precedence of binary operators. 
+6. In a C program, get input of the first day of the month (Monday or Tuesday or so on). Then given any date of that month the program should say which day it will fall on. Use the switch function for the same. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. In a C program, given the number of students as input, accept the ratings given by each student for an entity one by one. Count the frequency of each rating and print the number of students per rating as '*' characters i.e. if the frequency of rating 3 is 6 then the output should be “******”.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Design a simple calculator C program that gets input of two positive integers m and n and then calculates according to the user’s input either m+n, m*n, m-n, or m/n. Use switch statement to select the operation and design functions to perform each of the four operations.
+2. Given a positive integer write a program to convert the number into words. For example, if the input is 496 (as integer) then the output should be be ‘four nine six’.
+3. Show the differences between call by value and call by reference in functions using printf statement in C.
+4. In a C program, calculate the area of a triangle using the formula area = 0.5 * base * height based on user input. Then use this function to calculate the area of a square and rectangle based on user input as well. 
+5. Write a program in C to convert a decimal number to a binary number using a function. 
+6. Write a C program to find the prime numbers between a numerical range using a function. For every number, check if it is divisible by any number from 2 to num/2 and decide that it is a prime number if there are no factors in that range. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Write a C program that includes a function anagram that returns true if any two strings are anagrams and false otherwise. For example, spare and pears are an Anagram.
+2. Write a C program that includes a function linear_search that takes as input an array and a number and returns the index of the number in the array or -1 otherwise. 
+3. Write a C program that includes a function rotate_left that shifts all entries in the array to the left by 1 index everytime and call the function enough times to get back to the original array. rotate_left([1,2,3,4,5]) will give the output [2,3,4,5,1].
+4. Write a function in C to multiply two complex numbers.
+5. Write a function in C that imitates a function with default values from C++/Python. What is the disadvantage in this approach?
+An example: int f1(int a, int b, int c) { return f2(a, b, 10); }
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Check if a given number is even or odd using bitwise operators in a C program.
+2. In a C program, read an integer n from the user and print the 32 bit binary representation of n and -n. Look up on 2s complement to find out about positive and negative representations. Use the 2s complement representation to find the sum of 2 negative numbers. 
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Write a C program to add two numbers using pointers.
+2. In a C program,
+   a) Traverse an integer array and add 1 to every element using a pointer.
+   b) Calculate partial/cumulative sums for every index in the array (if a_i is the array then the partial sum P_i is given by a_1+a_2+....+a_i)
+3. In a C program, take 3 strings as input and replace string 2 with string 3 in string 1. If the inputs are "Hello World", "World", "Person", the output should be "Hello Person"
+4. Run the following and think about why the outputs make sense.
+
+#include<stdio.h>
+
+void increment(int *v) 
+{
+  (*v)++; 
+}
+
+int main() 
+{
+  int a;
+  printf("Enter a number to add 1 to:");
+  scanf("%d", &a);
+  increment(&a);
+  printf("%d", a);
+
+  int b[] = {0, 15};
+  int *p;
+  p = b;
+
+  p++;
+  printf("\n%d", *p);
+  return 0;      
+}     
+
+Bonus: Find out the address of the variable x in foo1 and y in foo2. How is this possible?
+
+#include <stdio.h>
+void foo1(int xval)
+{
+int x;
+x = xval;
+}
+void foo2(int dummy)
+{
+int y;
+}
+int main()
+{
+foo1(7);
+foo2(11);
+return 0;
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Write a function that takes a string sentence as input and use pointer arithmetic to print the words line by line.
+          Input: "She studies at Shiv Nadar University"
+          Output: 
+                  She
+                  studies
+                  at
+                  Shiv
+                  Nadar
+                  University
+2. Write a program to input an integer and print the corresponding month string using a function. For numbers outside the 1-12 range, print "Invalid Month".
+          Input: 1
+          Output: January
+3. Write a function to imitate lists in Python to store a list of lists of variable sizes.
+          Input: 
+                [1,2]
+                [10,14,17]
+                [1]
+                [5,10,56,42,1,6]
+          Output:
+                [[1,2], [10,14,17], [1], [5,10,56,42,1,6]]
+4. Re-write question 3 using a function that accepts one list at a time using the void pointer (pass the result list as a function argument as well) and append it to a list using the function.
+
+5. Card Game 1:
+
+    a) Create a structure "Card" with the following attributes:
+        Suit
+        Number
+        Frequency
+    
+    b) Write a function to define 52 cards in a pack
+    c) Write a function to check if 2 cards are the same and use it to get the index of a card in the pack using another function
+    d) Write a function to increment and decrement the frequency counter for a card using a card pointer (struct pointers use -> to dereference a data member)
+    e) Use pointers to swap 2 cards
+    f) Write a function to print a card: Ace,2-10,King,Queen,Jack for number and "Spade", "Claver", "Hearts", "Diamond" for the suit
+
+    g) Shuffle the cards in the pack using this function and display the first 10 cards
+
+#include <stdlib.h>
+#include <string.h>
+
+static void shuffle(void *array, size_t n, size_t size) {
+    char tmp[size];
+    char *arr = array;
+    size_t stride = size * sizeof(char);
+
+    if (n > 1) {
+        size_t i;
+        for (i = 0; i < n - 1; ++i) {
+            size_t rnd = (size_t) rand();
+            size_t j = i + rnd / (RAND_MAX / (n - i) + 1);
+
+            memcpy(tmp, arr + j * stride, size);
+            memcpy(arr + j * stride, arr + i * stride, size);
+            memcpy(arr + i * stride, tmp, size);
+        }
+    }
+}
+
+6. Book 1
+
+    Create a structure "Book" with the following attributes:
+          ISBN: integer
+          Book Title: String
+          Type: Hardcover / Paperback
+          No. of pages: integer
+          Genre: String
+          Author: String
+          Reviews: Pointers of strings
+  
+    a) Type Checking:
+            Accept user inputs for 1 book and store it in a Book variable. Write a function to check the following: 
+              ISBN should be a number > 10000 with 6 digits only
+              Type should only be the 2 options and should say "Invalid" otherwise
+              No. of pages cannot be negative
+
+    b) Write a function for this: given a list of books, print reviews by author per book.
+    c) Write a function that counts the number of books per genre and print the results
+    d) Write a function to pretty print (python term) a book similar to how the question has framed it.
+    e) Write a function that accepts a pointer to a Book and adds 3 reviews to it.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Please write functions for the following: i) binary_search, ii) sort
+Each function takes an array as input and returns the i) index of the searched element or -1, ii) indices of the sorted array
+
+1. Card Game 2:
+    
+    a) From the randomly shuffled cards, use 4 arrays to separate the cards by suit. Sort the 4 arrays by number.
+    b) Create 2 players p1 and p2 that stores the score and an array (of random shape) of cards for each player.
+    c) Randomly deal 5 cards per player using the shuffled deck. For every card dealt, increment its frequency counter by 1
+    d) For every non-face card (not King, Queen or Jack) p1 has, find if p2 has a card of higher `number` of the same suit and increment p1's score by 1 if p2 doesn't. Otherwise, increment p2's score by 1.
+       If p2 doesn't have any non-face cards of the same suit, check if p2 has the same card in a different suit. If both these are not satisfied, increment p1's score by 1
+       For every face card p1 has, find if p2 has higher face card of any suit and increment p2's score by 2 if p2 does. Otherwise, increment p1's score by 2.
+    e) Redo c) starting from player p2's cards instead of p1. If the scores are the same, declare that it's a "FAIR GAME". Otherwise, declare that it's an "UNFAIR GAME".
+    f) Declare the winner based on the score if p1 starts first and if p2 starts first separately.
+    g) Repeat the steps for 10 cards each, 15 cards each and 20 cards each. Declare whether the game is fair and scores based on which player starts first.
+    h) Print all the cards that were dealt.
+
+2. Book 2:
+
+    a) Declare an array of 6 books of 6 different authors with different first characters.
+    b) Sort the array by the first character of the author name. 
+    c) Use binary search to find a book by author name.
+    
+    "Sort and search code implemented as part of Movie structure from the last question."
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Write a C program to find the minimum and maximum of 2 values without using conditional statements or loops. HINT: Think about absolute value of a-b.
+2. Write a C program to reverse an array.
+3. Write a C program to find the number and count of repeating elements in C.
+4. Write a C program to sort first half of an array in descending order and the second half in ascending order. Choose a random centre element if the number of elements is odd.
+5. Write a C program to use binary search with the sorted array from question 4. Use the same centre element as question 4.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Create a structure Movie with the following attributes:
+  Title: string
+  Synopsis: string
+  Rating: int
+  Director: string
+  SimilarTo: Movie pointer
+  Length: int
+
+1) Declare an array of 5 movies and initialize them. Assign SimilarTo for all 5 movies to another movie in the array. Display each movie's title, director and the name of the similar movie. Make sure the length of each movie in minutes is different from each other. Refer to q3 for inputs for 2 of the movies. Use only 2 director names. Implement the following conditions before the declaration (use scanf only):
+          Rating is between 1 and 5 inclusive
+          Length is > 150 and < 200 minutes
+2) Declare an array I={0,1,2,3,4} representing the indices of the movies array and sort (using insertion sort) I along with each movie by length. Display the movie name, its index in the original array and length of the movie line by line.
+3) For every movie, extract the words present in the synopsis of both the movie and the movie it is similar to. Display the common words only.
+    Input: 
+      Synopsis: This movie is about revenge against a hospital for diagnosing a disease wrong for a family member.
+      SimilarTo's Synopsis: This movie is about a large hospital using incorrect treatment periods for a disease to increase profit.
+    Output: This, movie, is, about, a, hospital, for, a, disease
+4) For every director, print the synopsis line by line. 
+5) Without using conditional statements or loops, for each movie, display the movie's and the similar movie's title and rating line by line such that the movie with a higher rating is in the first line.
